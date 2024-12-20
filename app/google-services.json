@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "269122485214",
+    "project_id": "kelolakos-a2498",
+    "storage_bucket": "kelolakos-a2498.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:269122485214:android:3a1926eeed1dcd75a07b4f",
+        "android_client_info": {
+          "package_name": "com.example.kosannew"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnpaa6eN9z3dwGVBq5FOLC0ktvr-0RPpY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
