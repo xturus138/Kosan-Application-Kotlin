@@ -1,13 +1,11 @@
 package com.example.kosannew.home.home
 
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.example.kosannew.R
-import com.example.kosannew.auth.login.LoginFragment
 import com.example.kosannew.databinding.ActivityHomeBinding
+import com.example.kosannew.home.add.AddFragment
 
 class HomeActivity : AppCompatActivity() {
 
@@ -18,15 +16,28 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val fragmentManager = supportFragmentManager
         val homeFragment = HomeFragment()
-        val fragment = fragmentManager.findFragmentByTag(HomeFragment::class.java.simpleName)
-        if (fragment !is HomeFragment) {
-            Log.d("HomeFragment", "Fragment Name :" + LoginFragment::class.java.simpleName)
-            fragmentManager
-                .beginTransaction()
-                .add(R.id.frame_container_home, homeFragment, HomeFragment::class.java.simpleName)
-                .commit()
+        val addFragment = AddFragment()
+        val bottomNavigationView = binding.bottomNavigationView
+
+        setCurrentFragment(homeFragment)
+
+        bottomNavigationView.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.home -> setCurrentFragment(homeFragment)
+                R.id.add -> setCurrentFragment(addFragment)
+            }
+            true
+        }
+
+
+
+    }
+
+    private fun setCurrentFragment(fragment:Fragment){
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.frame_container_home,fragment)
+            commit()
         }
     }
 

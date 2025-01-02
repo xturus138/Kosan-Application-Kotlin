@@ -43,7 +43,7 @@
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         android:textColorHint="@color/grayText"
-        android:textColor="@color/grayText"
+        android:textColor="@color/grayIcon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvLoginText" />
@@ -58,7 +58,7 @@
         android:inputType="textPassword"
         android:minHeight="48dp"
         android:textColorHint="@color/grayText"
-        android:textColor="@color/grayText"
+        android:textColor="@color/grayIcon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />

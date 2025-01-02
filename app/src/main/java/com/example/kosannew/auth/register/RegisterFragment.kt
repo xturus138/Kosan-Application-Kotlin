@@ -10,6 +10,7 @@ import android.widget.Toast
 import com.example.kosannew.R
 import com.example.kosannew.auth.login.LoginFragment
 import com.example.kosannew.databinding.FragmentRegisterBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class RegisterFragment : Fragment(), View.OnClickListener {
@@ -19,19 +20,20 @@ class RegisterFragment : Fragment(), View.OnClickListener {
     }
 
     private lateinit var binding: FragmentRegisterBinding
-    private lateinit var db: FirebaseFirestore
+    private lateinit var firebaseAuth: FirebaseAuth
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentRegisterBinding.inflate(inflater, container, false)
+        firebaseAuth = FirebaseAuth.getInstance()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        db = FirebaseFirestore.getInstance()
         binding.buttonRegis.setOnClickListener(this)
         binding.buttonBack.setOnClickListener(this)
     }
@@ -82,25 +84,14 @@ class RegisterFragment : Fragment(), View.OnClickListener {
         }
 
         if (isValid) {
-            val user = hashMapOf(
-                "username" to etUsername,
-                "email" to etEmail,
-                "password" to etPassword
-            )
-
-            db.collection("users")
-                .add(user)
-                .addOnSuccessListener { documentReference ->
-                    binding.etUsernameRegister.text?.clear()
-                    binding.etTextEmailAddressRegister.text?.clear()
-                    binding.etTextPasswordRegister.text?.clear()
-                    Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
-                    Toast.makeText(requireContext(), "Registrasi berhasil", Toast.LENGTH_SHORT).show()
+            firebaseAuth.createUserWithEmailAndPassword(etEmail, etPassword).addOnCompleteListener{
+                if (it.isSuccessful) {
+                    Toast.makeText(context, "Registration Successful", Toast.LENGTH_SHORT).show()
                     moveFragment()
+                } else {
+                    Toast.makeText(context, it.exception.toString(), Toast.LENGTH_SHORT).show()
                 }
-                .addOnFailureListener { e ->
-                    Log.w(TAG, "Error adding document", e)
-                }
+            }
         } else {
             Log.d(TAG, "Some fields are empty or invalid")
         }

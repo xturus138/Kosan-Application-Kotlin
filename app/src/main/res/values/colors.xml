@@ -4,6 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="whiteBg">#FAF9FF</color>
     <color name="blue">#2F57DB</color>
+    <color name="whiteBlueLightBg">#faf9ff</color>
     <color name="blueDark">#133E87</color>
     <color name="blueLight">#608BC1</color>
     <color name="grayLight">#F3F3E0</color>

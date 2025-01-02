@@ -30,7 +30,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/etUsernameRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginTop="40dp"
         android:textColorHint="@color/grayText"
-        android:textColor="@color/grayText"
+        android:textColor="@color/grayIcon"
         android:ems="10"
         android:inputType="text"
         android:hint="Name"
@@ -46,27 +46,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logoImage" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/etTextEmailAddressRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="example@gmail.com"
         android:layout_margin="20dp"
         android:textColorHint="@color/grayText"
-        android:textColor="@color/grayText"
+        android:textColor="@color/grayIcon"
         android:ems="10"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etUsernameRegister" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/etTextPasswordRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:textColorHint="@color/grayText"
-        android:textColor="@color/grayText"
+        android:textColor="@color/grayIcon"
         android:hint="password"
         android:ems="10"
         android:inputType="textPassword"

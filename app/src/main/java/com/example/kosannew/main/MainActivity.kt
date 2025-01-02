@@ -1,11 +1,10 @@
-package com.example.kosannew
+package com.example.kosannew.main
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.kosannew.databinding.ActivityMainBinding
+import com.example.kosannew.home.add.AddFragment
+import com.example.kosannew.home.home.HomeFragment
 
 class MainActivity : AppCompatActivity() {
 

@@ -13,7 +13,7 @@ import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.MaterialToolbar
 
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), View.OnClickListener {
 
     private lateinit var binding: FragmentHomeBinding
 
@@ -27,31 +27,23 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val toolbar: MaterialToolbar = binding.toolbar
+        binding.menuProfile.setOnClickListener(this)
+    }
 
-        toolbar.setNavigationOnClickListener {
-
-        }
-
-        toolbar.setOnMenuItemClickListener { item ->
-            when (item.itemId) {
-                R.id.account -> {
-                    val accountFragment = ProfileFragment()
-                    val fragmentManager = parentFragmentManager
-                    fragmentManager.beginTransaction().apply {
-                        replace(
-                            R.id.frame_container_home,
-                            accountFragment,
-                            ProfileFragment::class.java.simpleName
-                        )
-                        addToBackStack(null)
-                        commit()
-                    }
-                    true
-
+    override fun onClick(v: View?) {
+        when(v?.id){
+            binding.menuProfile.id -> {
+                val fragment = ProfileFragment()
+                val fragmentManager = parentFragmentManager
+                fragmentManager.beginTransaction().apply {
+                    replace(
+                        R.id.frame_container_home,
+                        fragment,
+                        ProfileFragment::class.java.simpleName
+                    )
+                    addToBackStack(null)
+                    commit()
                 }
-
-                else -> false
             }
         }
     }
