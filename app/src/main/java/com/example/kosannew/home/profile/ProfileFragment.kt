@@ -2,6 +2,7 @@ package com.example.kosannew.home.profile
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,11 +14,15 @@ import com.example.kosannew.auth.login.LoginFragment
 import com.example.kosannew.databinding.FragmentProfileBinding
 import com.example.kosannew.home.home.HomeActivity
 import com.example.kosannew.home.home.HomeFragment
+import com.example.kosannew.main.MainActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class ProfileFragment : Fragment(), View.OnClickListener {
 
     private lateinit var binding: FragmentProfileBinding
+    private val auth = FirebaseAuth.getInstance()
+    private val firestore = FirebaseFirestore.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,37 +34,120 @@ class ProfileFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as? HomeActivity)?.hideBottomNavigationView()
         binding.buttonBack.setOnClickListener(this)
         binding.logout.setOnClickListener(this)
+        getUserData()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        (activity as? HomeActivity)?.showBottomNavigationView()
     }
 
     override fun onClick(v: View?) {
         when(v?.id){
             binding.buttonBack.id -> {
                 val fragment = HomeFragment()
-                val fragmentManager = parentFragmentManager
-                fragmentManager.beginTransaction().apply {
-                    replace(
-                        R.id.frame_container_home,
-                        fragment,
-                        HomeFragment::class.java.simpleName
-                    )
-                    addToBackStack(null)
+                parentFragmentManager.beginTransaction().apply {
+                    replace(R.id.frame_container_home, fragment, HomeFragment::class.java.simpleName)
                     commit()
                 }
             }
             binding.logout.id -> {
-                FirebaseAuth.getInstance().signOut()
-                if (FirebaseAuth.getInstance().currentUser == null) {
-                    Toast.makeText(context, "Logout Success", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(requireContext(), LoginActivity::class.java)
-                    startActivity(intent)
-                    requireActivity().finish()
-                } else {
-                    Toast.makeText(context, "Logout Failed", Toast.LENGTH_SHORT).show()
+                auth.signOut()
+                auth.addAuthStateListener { firebaseAuth ->
+                    if (isAdded && firebaseAuth.currentUser == null) {
+                        activity?.let { context ->
+                            Toast.makeText(context, "Logout Success", Toast.LENGTH_SHORT).show()
+                        }
+                        val intent = Intent(requireContext(), LoginActivity::class.java)
+                        startActivity(intent)
+                        requireActivity().finish()
+                    } else {
+                        activity?.let { context ->
+                            Toast.makeText(context, "Logout Failed", Toast.LENGTH_SHORT).show()
+                        }
+                    }
                 }
             }
         }
     }
+
+    private fun getUserData() {
+        val userId = auth.currentUser?.uid
+        if (userId == null) {
+            Log.d("ProfileFragment", "getUserData: User ID is null ")
+            return
+        } else {
+            firestore.collection("users").document(userId)
+                .get()
+                .addOnSuccessListener { document ->
+                    if (document.exists()) {
+                        val username = document.getString("username")
+                        val gender = document.getString("gender")
+                        val age = document.getString("age") ?: "Unknown"
+                        val dateOfBirth = document.getString("dateOfBirth")
+                        val mobilePhone = document.getString("mobilePhone")
+                        val email = document.getString("email")
+
+                        binding.tvUsernameTitle.text = username
+                        binding.tvUsername.text = username
+                        binding.tvGender.text = gender
+                        binding.tvAge.text = age
+                        binding.tvDateOfBirth.text = dateOfBirth
+                        binding.tvMobilePhone.text = mobilePhone
+                        binding.tvEmail.text = email
+                    } else {
+                        Toast.makeText(requireContext(), "User data not found.", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    Log.e("FirestoreError", "Error fetching user data", exception)
+                    Toast.makeText(
+                        requireContext(),
+                        "Failed to fetch user data. Please try again.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                .addOnCompleteListener {
+                    Log.d("ProfileFragment", "getUserData: Complete Fetch Data")
+
+                }
+
+        }
+    }
+
+        /*private fun getUserData() {
+        val userId = auth.currentUser?.uid
+        if (userId != null) {
+            firestore.collection("users").document(userId)
+                .get()
+                .addOnSuccessListener { document ->
+                    if (document.exists()) {
+                        val username = document.getString("username")
+                        val gender = document.getString("gender")
+                        val age = document.getString("age")
+                        val dateOfBirth = document.getString("dateOfBirth")
+                        val mobilePhone = document.getString("mobilePhone")
+                        val email = document.getString("email")
+
+                        binding.tvUsername.text = username
+                        binding.tvGender.text = gender
+                        binding.tvAge.text = age
+                        binding.tvDateOfBirth.text = dateOfBirth
+                        binding.tvMobilePhone.text = mobilePhone
+                        binding.tvEmail.text = email
+                    } else {
+                        Toast.makeText(requireContext(), "User data not found.", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    Toast.makeText(requireContext(), "Error fetching user data: $exception", Toast.LENGTH_SHORT).show()
+                }
+        }
+    }*/
+
 
 }

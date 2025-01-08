@@ -57,9 +57,10 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/tvUsernameTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Raditya Aryabudhi Ramadhan"
+                        tools:text="Raditya Aryabudhi Ramadhan"
                         android:textAlignment="center"
                         android:textSize="20sp"
                         android:fontFamily="sans-serif-light"
@@ -159,10 +160,11 @@
                         android:textSize="15sp"
                         android:textStyle="bold" />
                     <TextView
+                        android:id="@+id/tvUsername"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#6E6C6C"
-                        android:text="Raditya Aryabudhi Ramadhan"
+                        tools:text="Raditya Aryabudhi Ramadhan"
                         android:fontFamily="sans-serif-light"
                         android:textSize="15sp"
                         android:layout_alignParentEnd="true"
@@ -186,10 +188,11 @@
                         android:textSize="15sp"
                         android:textStyle="bold" />
                     <TextView
+                        android:id="@+id/tvGender"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#6E6C6C"
-                        android:text="Male"
+                        tools:text="Male"
                         android:fontFamily="sans-serif-light"
                         android:textSize="15sp"
                         android:layout_alignParentEnd="true"
@@ -213,10 +216,11 @@
                         android:textSize="15sp"
                         android:textStyle="bold" />
                     <TextView
+                        android:id="@+id/tvAge"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#6E6C6C"
-                        android:text="21"
+                        tools:text="21"
                         android:fontFamily="sans-serif-light"
                         android:textSize="15sp"
                         android:layout_alignParentEnd="true"
@@ -240,10 +244,11 @@
                         android:textSize="15sp"
                         android:textStyle="bold" />
                     <TextView
+                        android:id="@+id/tvDateOfBirth"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#6E6C6C"
-                        android:text="13/08/2004"
+                        tools:text="13/08/2004"
                         android:fontFamily="sans-serif-light"
                         android:textSize="15sp"
                         android:layout_alignParentEnd="true"
@@ -266,10 +271,11 @@
                         android:layout_alignParentStart="true"
                         android:textStyle="bold"/>
                     <TextView
+                        android:id="@+id/tvMobilePhone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#6E6C6C"
-                        android:text="081324088705"
+                        tools:text="081324088705"
                         android:fontFamily="sans-serif-light"
                         android:textSize="15sp"
                         android:layout_alignParentEnd="true"
@@ -292,10 +298,11 @@
                         android:layout_alignParentStart="true"
                         android:textStyle="bold"/>
                     <TextView
+                        android:id="@+id/tvEmail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#6E6C6C"
-                        android:text="radityaramadhan138@Gmail.com"
+                        tools:text="radityaramadhan138@Gmail.com"
                         android:fontFamily="sans-serif-light"
                         android:textSize="15sp"
                         android:layout_alignParentEnd="true"

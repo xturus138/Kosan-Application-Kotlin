@@ -30,6 +30,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.progressBar.visibility = View.GONE
         binding.btMasuk.setOnClickListener(this)
         binding.tvRegistrasiDisini.setOnClickListener(this)
         binding.tvLupaKataSandi.setOnClickListener(this)
@@ -78,6 +79,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
     }
 
     private fun loginFirebase() {
+        binding.progressBar.visibility = View.VISIBLE
         val email = binding.editTextTextEmailAddress.text.toString().trim()
         val password = binding.editTextTextPassword.text.toString().trim()
         if (email.isEmpty() || password.isEmpty()) {
@@ -90,6 +92,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
         } else {
             firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
                 if (it.isSuccessful) {
+                    binding.progressBar.visibility = View.GONE
                     Toast.makeText(context, "Login Successful", Toast.LENGTH_SHORT).show()
                     moveActivity()
                 } else {
