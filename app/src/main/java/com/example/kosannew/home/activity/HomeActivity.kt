@@ -1,4 +1,4 @@
-package com.example.kosannew.home.home
+package com.example.kosannew.home.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,11 +7,11 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.kosannew.R
-import com.example.kosannew.auth.login.LoginActivity
+import com.example.kosannew.auth.activity.LoginActivity
 import com.example.kosannew.databinding.ActivityHomeBinding
 import com.example.kosannew.home.add.AddFragment
+import com.example.kosannew.home.home.HomeFragment
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.ktx.Firebase
 
 class HomeActivity : AppCompatActivity() {
 

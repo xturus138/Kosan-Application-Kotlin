@@ -16,10 +16,13 @@
         android:theme="@style/Theme.KosanNew"
         tools:targetApi="31">
         <activity
-            android:name=".home.home.HomeActivity"
+            android:name=".management.activity.ManagementActivity"
             android:exported="false" />
         <activity
-            android:name=".auth.login.LoginActivity"
+            android:name=".home.activity.HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".auth.activity.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

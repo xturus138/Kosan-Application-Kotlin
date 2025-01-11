@@ -1,9 +1,10 @@
-package com.example.kosannew.auth.login
+package com.example.kosannew.auth.activity
 
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kosannew.R
+import com.example.kosannew.auth.login.LoginFragment
 import com.example.kosannew.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {

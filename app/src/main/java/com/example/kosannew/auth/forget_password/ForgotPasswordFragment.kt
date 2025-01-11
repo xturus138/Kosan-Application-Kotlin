@@ -10,7 +10,7 @@ import com.example.kosannew.auth.login.LoginFragment
 import com.example.kosannew.databinding.FragmentLupasandiBinding
 
 
-class LupasandiFragment : Fragment(), View.OnClickListener {
+class ForgotPasswordFragment : Fragment(), View.OnClickListener {
 
     private lateinit var binding: FragmentLupasandiBinding
 

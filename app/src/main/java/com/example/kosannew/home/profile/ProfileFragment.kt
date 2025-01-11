@@ -9,12 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.example.kosannew.R
-import com.example.kosannew.auth.login.LoginActivity
-import com.example.kosannew.auth.login.LoginFragment
+import com.example.kosannew.auth.activity.LoginActivity
 import com.example.kosannew.databinding.FragmentProfileBinding
-import com.example.kosannew.home.home.HomeActivity
+import com.example.kosannew.home.activity.HomeActivity
 import com.example.kosannew.home.home.HomeFragment
-import com.example.kosannew.main.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
